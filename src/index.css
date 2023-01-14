@@ -47,4 +47,5 @@ a{
 }
 .sidebar ul li a.active{
   color: var(--txt-clr);
+  background-color: var(--bg-2-clr);
 }
