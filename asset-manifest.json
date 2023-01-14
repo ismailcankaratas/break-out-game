@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/break-out-game/static/css/main.8ca794a4.css",
-    "main.js": "/break-out-game/static/js/main.995044fb.js",
-    "index.html": "/break-out-game/index.html",
-    "main.8ca794a4.css.map": "/break-out-game/static/css/main.8ca794a4.css.map",
-    "main.995044fb.js.map": "/break-out-game/static/js/main.995044fb.js.map"
+    "main.css": "/static/css/main.8ca794a4.css",
+    "main.js": "/static/js/main.995044fb.js",
+    "index.html": "/index.html",
+    "main.8ca794a4.css.map": "/static/css/main.8ca794a4.css.map",
+    "main.995044fb.js.map": "/static/js/main.995044fb.js.map"
   },
   "entrypoints": [
     "static/css/main.8ca794a4.css",
