@@ -3,6 +3,9 @@ import { BallMovement } from "./BallMovement";
 import data from "../../data";
 import WallCollision from "./util/WallCollision";
 import Brick from "./Brick";
+import Paddle from "./Paddle";
+
+let { paddleProps } = data;
 
 let bricks = [];
 
@@ -35,6 +38,8 @@ export default function Board() {
 
             WallCollision(ballObj, canvas);
 
+            Paddle(ctx,canvas,paddleProps)
+
             requestAnimationFrame(render);
         }
         render();
@@ -42,7 +47,10 @@ export default function Board() {
     }, []);
     return (
         <div className="game">
-            <canvas id="canvas" ref={canvasRef} />
+            <canvas id="canvas"
+                ref={canvasRef}
+                onMouseMove={(event)=> paddleProps.x = event.clientX - paddleProps.width / 2 - 10}
+                />
         </div>
     )
 }
