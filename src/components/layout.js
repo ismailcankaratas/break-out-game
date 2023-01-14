@@ -1,13 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 function Layout() {
     return (
         <>
             <div className="sidebar">
                 <ul>
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/breakout'}>Breakout</Link></li>
+                    <li><NavLink className={({isActive}) => (isActive) ? 'active' : ' '} to={'/'}>Home</NavLink></li>
+                    <li><NavLink className={({isActive}) => (isActive) ? 'active' : ' '} to={'/breakout'}>Breakout</NavLink></li>
                 </ul>
+                <hr />
             </div>
             <main>
                 <Outlet />

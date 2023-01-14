@@ -1,27 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
-
-body {
-  font-family: 'Sora', sans-serif;
+*, *::before, *::after{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-a {
-  color: black;
+:root{
+  --theme-clr: ;
+  --bg-clr: #0d1116;
+  --bg-2-clr: #161b22;
+  --txt-clr: #58a6ff;
+  --primary-clr: #15223a;
+  --secondary-clr: #c9d1d9;
+  --border-clr: #21262d;
+}
+body {
+  font-family: 'Sora', sans-serif;
+  background-color: var(--bg-clr);
+  color: var(--secondary-clr);
+}
+a{
+  color: var(--secondary-clr);
   text-decoration: none;
 }
-
-.sidebar {
-  border-bottom: 1px solid black;
+.sidebar{
+  margin: 0 auto;
+  width: 80%;
 }
-
+.sidebar hr {
+  border-color: var(--border-clr);
+}
 .sidebar ul {
   display: flex;
+  justify-content: space-evenly;
   list-style-type: none;
-  gap: 1rem;
+  padding: 1rem;
+}
+.sidebar ul li a{
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  transition: .25s;
 }
 
 .sidebar ul li a:hover {
-  color: chocolate;
+  color: var(--txt-clr);
+  background-color: var(--bg-2-clr);
+}
+.sidebar ul li a.active{
+  color: var(--txt-clr);
 }
