@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react"
 import { BallMovement } from "./BallMovement";
 import data from "../../data";
+import WallCollision from "./util/WallCollision";
+import Brick from "./Brick";
+
+let bricks = [];
+
+let { ballObj, brickObj } = data;
 
 export default function Board() {
     const canvasRef = useRef(null);
@@ -10,22 +16,24 @@ export default function Board() {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
 
-            let { ballObj } = data;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let newBrickSet = Brick(2, bricks, canvas, brickObj);
+
+            if (newBrickSet && newBrickSet.length > 0) {
+                bricks = newBrickSet;
+            }
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            bricks.map((brick) => {
+                return brick.draw(ctx);
+            });
+
             BallMovement(ctx, ballObj);
 
-            if (ballObj.y - ballObj.rad <= 0 ||
-                ballObj.y + ballObj.rad >= canvas.height
-            ) {
-                ballObj.dy *= -1;
-            }
-            if (ballObj.x + ballObj.rad >= canvas.width ||
-                ballObj.x - ballObj.rad <= 0
-            ) {
-                ballObj.dx *= -1;
-            }
+            WallCollision(ballObj, canvas);
 
             requestAnimationFrame(render);
         }
