@@ -1,12 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
 
-function Layout(){
-    return(
+function Layout() {
+    return (
         <>
-            <ul>
-                <li><Link to={ '/' }>Breakout</Link></li>
-            </ul>
-            <Outlet></Outlet>
+            <div className="sidebar">
+                <ul>
+                    <li><Link to={'/'}>Home</Link></li>
+                    <li><Link to={'/breakout'}>Breakout</Link></li>
+                </ul>
+            </div>
+            <main>
+                <Outlet />
+            </main>
         </>
     )
 }
