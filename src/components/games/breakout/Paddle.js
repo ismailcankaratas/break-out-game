@@ -2,16 +2,16 @@ export default (ctx, canvas, paddleProps) => {
     class Paddle {
         constructor(x) {
             this.x = x;
-            this.y = canvas.height - 30;
+            this.y = canvas.height - 10;
             this.height = 20;
             this.width = paddleProps.width;
-            this.colors = ["red", "#FFA62B"];
+            this.colors = ["red", "#0088FF"];
         }
         move() {
             ctx.beginPath();
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.fillStyle = this.broke ? "white" : this.colors[1];
-            ctx.strokeStyle = this.broke ? "white" : "red";
+            ctx.strokeStyle = this.broke ? "white" : "blue";
             ctx.lineWidth = 1;
             ctx.fillStyle = this.broke ? "white" : this.colors[1];
             ctx.shadowBlur = 0;
