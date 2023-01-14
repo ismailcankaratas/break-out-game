@@ -6,6 +6,7 @@ import Brick from "./Brick";
 import Paddle from "./Paddle";
 import BrickCollision from "./util/BrickCollision";
 import PlayerStats from "./playerStats";
+import AllBroken from "./util/AllBroke";
 
 let bricks = [];
 
@@ -35,7 +36,7 @@ export default function Board() {
             
             // Player Stats Function call
             PlayerStats(ctx, player, canvas);
-            
+
             // Display Bircks
             bricks.map((brick) => {
                 return brick.draw(ctx);
@@ -44,8 +45,11 @@ export default function Board() {
             // Top Hareketi
             BallMovement(ctx, ballObj);
 
+            // Check all broken
+            AllBroken(bricks, player, canvas, ballObj);
+
             // Top ve duvar sekmesi
-            WallCollision(ballObj, canvas);
+            WallCollision(ballObj, canvas, player, paddleProps);
 
             // Brick Collision
             let brickCollision;
@@ -60,6 +64,8 @@ export default function Board() {
                         ballObj.dy *= -1;
                         bricks[i].broke = true;
                     }
+
+                    player.score += 10;
                 }
             }
 
