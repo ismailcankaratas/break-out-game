@@ -5,11 +5,13 @@ import WallCollision from "./util/WallCollision";
 import Brick from "./Brick";
 import Paddle from "./Paddle";
 import BrickCollision from "./util/BrickCollision";
-import PlayerStats from "./playerStats";
+import AllBroken from "./util/AllBroke";
+import PlayerStates from "./playerStats";
+import PaddleHit from "./util/PaddleHit";
 
 let bricks = [];
 
-let { ballObj, brickObj } = data;
+let { ballObj, brickObj, player, paddleProps } = data;
 
 export default function Board() {
     const canvasRef = useRef(null);
@@ -19,7 +21,7 @@ export default function Board() {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
 
-            
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
@@ -30,11 +32,11 @@ export default function Board() {
                 bricks = newBrickSet;
             }
 
-            
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             // Player Stats Function call
-            PlayerStats(ctx, player, canvas);
+            PlayerStates(ctx, player, canvas);
 
             // Display Bircks
             bricks.map((brick) => {
@@ -55,11 +57,11 @@ export default function Board() {
             for (let i = 0; i < bricks.length; i++) {
                 brickCollision = BrickCollision(ballObj, bricks[i]);
 
-                if(brickCollision.hit && !bricks[i].broke) {
+                if (brickCollision.hit && !bricks[i].broke) {
                     if (brickCollision.axis === "X") {
                         ballObj.dx *= -1;
                         bricks[i].broke = true;
-                    } else if (brickCollision.axis === "Y"){
+                    } else if (brickCollision.axis === "Y") {
                         ballObj.dy *= -1;
                         bricks[i].broke = true;
                     }
