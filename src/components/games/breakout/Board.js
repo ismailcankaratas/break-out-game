@@ -12,37 +12,38 @@ import ResetBall from "./util/ResetBall";
 
 let bricks = [];
 let { ballObj, paddleProps, brickObj, player } = data;
-export default function Board() {
-const canvasRef = useRef(null);
 
-useEffect(() => {
+export default function Board() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
     const render = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    paddleProps.y = canvas.height - 30;
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      paddleProps.y = canvas.height - paddleProps.height;
 
       // Assign Bricks
-    let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
+      let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
 
-    if (newBrickSet && newBrickSet.length > 0) {
+      if (newBrickSet && newBrickSet.length > 0) {
         bricks = newBrickSet;
-    }
+      }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    PlayerStats(ctx, player, canvas);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      PlayerStats(ctx, player, canvas);
 
       // Display Bricks
-    bricks.map((brick) => {
+      bricks.map((brick) => {
         return brick.draw(ctx);
-    });
+      });
 
       // Handle Ball Movement
-    BallMovement(ctx, ballObj);
+      BallMovement(ctx, ballObj);
 
       // Check all broken
-    AllBroken(bricks, player, canvas, ballObj);
+      AllBroken(bricks, player, canvas, ballObj);
 
-    if (player.lives === 0) {
+      if (player.lives === 0) {
         alert("Game Over! Press ok to restart");
 
         player.lives = 5;
@@ -50,57 +51,57 @@ useEffect(() => {
         player.score = 0;
         ResetBall(ballObj, canvas, paddleProps);
         bricks.length = 0;
-    }
+      }
       // Ball and Wall Collision
-    WallCollision(ballObj, canvas, player, paddleProps);
+      WallCollision(ballObj, canvas, player, paddleProps);
 
       // Brick Collision
-    let brickCollision;
+      let brickCollision;
 
-    for (let i = 0; i < bricks.length; i++) {
+      for (let i = 0; i < bricks.length; i++) {
         brickCollision = BrickCollision(ballObj, bricks[i]);
 
         if (brickCollision.hit && !bricks[i].broke) {
           // console.log(brickCollision);
-        if (brickCollision.axis === "X") {
+          if (brickCollision.axis === "X") {
             ballObj.dx *= -1;
             bricks[i].broke = true;
-        } else if (brickCollision.axis === "Y") {
+          } else if (brickCollision.axis === "Y") {
             ballObj.dy *= -1;
             bricks[i].broke = true;
+          }
+          player.score += 10;
         }
-        player.score += 10;
-        }
-    }
-    Paddle(ctx, canvas, paddleProps);
+      }
+      Paddle(ctx, canvas, paddleProps);
 
       // Paddle + Ball Collision
-    PaddleHit(ballObj, paddleProps);
+      PaddleHit(ballObj, paddleProps);
 
-    requestAnimationFrame(render);
+      requestAnimationFrame(render);
     };
     render();
-}, []);
+  }, []);
 
-return (
+  return (
     <div style={{ textAlign: "center" }}>
-        <canvas
+      <canvas
         id="canvas"
         ref={canvasRef}
         onMouseMove={(event) =>
-            (paddleProps.x =
-            event.clientX -
-            (window.innerWidth < 900 ? 10 : (window.innerWidth * 20) / 200) -
-            paddleProps.width / 2 -
-            10)
+        (paddleProps.x =
+          event.clientX -
+          (window.innerWidth < 900 ? 10 : (window.innerWidth * 20) / 200) -
+          paddleProps.width / 2 -
+          10)
         }
         height="500"
         width={
-            window.innerWidth < 900
+          window.innerWidth < 900
             ? window.innerWidth - 20
             : window.innerWidth - (window.innerWidth * 20) / 100
         }
-        />
+      />
     </div>
-    );
+  );
 }

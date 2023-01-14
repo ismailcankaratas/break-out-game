@@ -5,7 +5,7 @@ export default {
         dx: 5,
         dy: 5,
         rad: 10,
-        speed: 3,
+        speed: 10,
     },
     brickObj: {
         x: 0.5,
@@ -15,7 +15,7 @@ export default {
         colors: ["red", "lightblue"],
     },
     player: {
-        name: "Kerem Can Karataş",
+        name: "Player",
         lives: 5,
         score: 0,
         level: 1,

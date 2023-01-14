@@ -2,7 +2,7 @@ export default function PlayerStates(ctx, player, canvas) {
     // Name
     ctx.font = '20px Arial';
     ctx.fillStyle = "white";
-    ctx.fillText(`Name: ${player.name}`, 20, 30);
+    ctx.fillText(`Level: ${player.level}`, 20, 30);
 
     // Lives
     ctx.font = "20px Arial"
