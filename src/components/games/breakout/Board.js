@@ -6,11 +6,10 @@ import Brick from "./Brick";
 import Paddle from "./Paddle";
 import BrickCollision from "./util/BrickCollision";
 import PlayerStats from "./playerStats";
-import AllBroken from "./util/AllBroke";
 
 let bricks = [];
 
-let { ballObj, brickObj, paddleProps, player } = data;
+let { ballObj, brickObj } = data;
 
 export default function Board() {
     const canvasRef = useRef(null);
@@ -69,7 +68,9 @@ export default function Board() {
                 }
             }
 
-            Paddle(ctx,canvas,paddleProps)
+            Paddle(ctx, canvas, paddleProps)
+
+            PaddleHit(ballObj, paddleProps);
 
             requestAnimationFrame(render);
         }
@@ -80,8 +81,8 @@ export default function Board() {
         <div className="game">
             <canvas id="canvas"
                 ref={canvasRef}
-                onMouseMove={(event)=> paddleProps.x = event.clientX - paddleProps.width / 2 - 10}
-                />
+                onMouseMove={(event) => paddleProps.x = event.clientX - paddleProps.width / 2 - 10}
+            />
         </div>
     )
 }
