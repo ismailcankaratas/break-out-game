@@ -1,16 +1,15 @@
-import { cloneElement, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { BallMovement } from "./BallMovement";
 import data from "../../data";
 import WallCollision from "./util/WallCollision";
 import Brick from "./Brick";
 import Paddle from "./Paddle";
 import BrickCollision from "./util/BrickCollision";
-
-let { paddleProps } = data;
+import PlayerStats from "./playerStats";
 
 let bricks = [];
 
-let { ballObj, brickObj } = data;
+let { ballObj, brickObj, paddleProps, player } = data;
 
 export default function Board() {
     const canvasRef = useRef(null);
@@ -30,6 +29,9 @@ export default function Board() {
             if (newBrickSet && newBrickSet.length > 0) {
                 bricks = newBrickSet;
             }
+
+            // Player Stats Function call
+            PlayerStats(ctx, player, canvas)
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
