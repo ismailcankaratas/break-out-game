@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
-*, *::before, *::after{
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-:root{
+
+:root {
   --theme-clr: ;
   --bg-clr: #0d1116;
   --bg-2-clr: #161b22;
@@ -13,29 +17,35 @@
   --secondary-clr: #c9d1d9;
   --border-clr: #21262d;
 }
+
 body {
   font-family: 'Sora', sans-serif;
   background-color: var(--bg-clr);
   color: var(--secondary-clr);
 }
-a{
+
+a {
   color: var(--secondary-clr);
   text-decoration: none;
 }
-.sidebar{
+
+.sidebar {
   margin: 0 auto;
   width: 80%;
 }
+
 .sidebar hr {
   border-color: var(--border-clr);
 }
+
 .sidebar ul {
   display: flex;
   justify-content: space-evenly;
   list-style-type: none;
   padding: 1rem;
 }
-.sidebar ul li a{
+
+.sidebar ul li a {
   padding: .5rem 1rem;
   border-radius: 5px;
   transition: .25s;
@@ -45,7 +55,20 @@ a{
   color: var(--txt-clr);
   background-color: var(--bg-2-clr);
 }
-.sidebar ul li a.active{
+
+.sidebar ul li a.active {
   color: var(--txt-clr);
   background-color: var(--bg-2-clr);
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#canvas {
+  width: 80%;
+  background-color: var(--bg-2-clr);
+  border-radius: 4px;
 }
