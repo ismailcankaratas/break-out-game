@@ -15,7 +15,7 @@ export default {
         colors: ["red", "lightblue"],
     },
     player: {
-        name: "Dhaval",
+        name: "Kerem Can Karataş",
         lives: 5,
         score: 0,
         level: 1,

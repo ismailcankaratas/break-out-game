@@ -30,11 +30,12 @@ export default function Board() {
                 bricks = newBrickSet;
             }
 
-            // Player Stats Function call
-            PlayerStats(ctx, player, canvas)
-
+            
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+            
+            // Player Stats Function call
+            PlayerStats(ctx, player, canvas);
+            
             // Display Bircks
             bricks.map((brick) => {
                 return brick.draw(ctx);
